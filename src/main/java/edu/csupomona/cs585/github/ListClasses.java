@@ -60,6 +60,10 @@ public class ListClasses {
 			// TODO Auto-generated catch block
 			System.out.println("ERROR: " + e);
 		}
+		catch (NoClassDefFoundError e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERROR: " + e);
+		}
 		return c;
 }
 	

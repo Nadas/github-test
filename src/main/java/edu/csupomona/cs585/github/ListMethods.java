@@ -28,45 +28,50 @@ public class ListMethods extends ListClasses {
 						//System.out.println(method);
 					}
 				}
-				else{
-					methods.add(method.getName());
-				}
 			}
 			methodsCount = methods.size();
 		} catch (NoClassDefFoundError e) {
 			System.out.println("ERROR: " + e);
+			//System.out.println("ERROR: " + e + " Path: " + classPath.toString());
 			//http://stackoverflow.com/questions/15144601/noclassdeffounderror-when-loading-classes-with-classloader-recursively
 		}
 
 	}
 
 	//needs refining ... extending listClass
-	public static void getMainMethods(Path dir, Path testClassPath) throws IOException, ClassNotFoundException {	
-		DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
-		for (Path entry : stream) {
-			if (Files.isDirectory(entry)) {
-				getMainMethods(entry, testClassPath);
-			}
-			else if(entry.toString().endsWith(".class")){
-				String testClassName = getClassName(testClassPath);
-				String className = getClassName(entry);
+	public static void getMainMethods(Path dir, Path testClassPath) throws IOException {	
+		try{
+			DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
+			for (Path entry : stream) {
+				if (Files.isDirectory(entry)) {
+					getMainMethods(entry, testClassPath);
+				}
+				else if(entry.toString().endsWith(".class")){
+					String testClassName = getClassName(testClassPath);
+					String className = getClassName(entry);
 
-				if(className.equals(testClassName.substring(0, testClassName.length() - 4)) ){
-					//System.out.println("here");
-					methods2 = new ArrayList<>();
-					Class<?> clazz = loadClass(entry);
-					for (Method method : clazz.getDeclaredMethods()) {
-						methods2.add(method.getName());
+					if(className.equals(testClassName.substring(0, testClassName.length() - 4)) ){
+						//System.out.println("here");
+						methods2 = new ArrayList<>();
+						Class<?> clazz = loadClass(entry);
+						for (Method method : clazz.getDeclaredMethods()) {
+							methods2.add(method.getName());
+						}
 					}
 				}
 			}
 		}
+		catch (NoClassDefFoundError e) {
+			System.out.println("ERROR: " + e);
+			//System.out.println("ERROR: " + e + " Path: " + classPath.toString());
+			//http://stackoverflow.com/questions/15144601/noclassdeffounderror-when-loading-classes-with-classloader-recursively
+		}
 	}
-	
+
 	public static int getTestMethodsCount(){
 		return methods.size();
 	}
-	
+
 	public static int getMainMethodsCount(){
 		return methods2.size();
 	}
