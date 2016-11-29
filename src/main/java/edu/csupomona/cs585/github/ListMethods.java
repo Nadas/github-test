@@ -11,7 +11,6 @@ import java.util.List;
 public class ListMethods extends ListClasses {
 
 	static int methodsCount;
-	static int methodsCoverage;
 	static List<String> methods = new ArrayList<>();
 	static List<String> methods2 = new ArrayList<>();
 
@@ -63,12 +62,12 @@ public class ListMethods extends ListClasses {
 			}
 		}
 	}
-
-	public static List<String> getMethods(){
-		return methods;
+	
+	public static int getTestMethodsCount(){
+		return methods.size();
 	}
-
-	public static int getMethodsCount(){
-		return methodsCount;
+	
+	public static int getMainMethodsCount(){
+		return methods2.size();
 	}
 }

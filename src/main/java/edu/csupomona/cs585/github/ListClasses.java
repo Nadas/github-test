@@ -13,7 +13,7 @@ public class ListClasses {
 
 	private static int classCount;
 	private static int testClassCount;
-	private static int classTestCoverage;
+
 	public static List<Path> files = new ArrayList<>();
 	public static List<Path> testFiles = new ArrayList<>();
 
@@ -69,11 +69,6 @@ public class ListClasses {
 
 	public static int getTestClassCount(){
 		return testClassCount;
-	}
-	
-	public static int classTestCoverage(){
-		classTestCoverage = classCount/testClassCount;
-		return classTestCoverage;
 	}
 
 }
