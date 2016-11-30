@@ -3,6 +3,10 @@ Prompt Overview
 An analysis of the test coverage of a given GitHub user's public projects source code based on the number of test classes and methods.
 
 "Given a GitHub user, automatically analyze all the public projects source code and check the number of test classes, methods being tested, or test coverage, and report whether the user is a good tester or not."
+
+Project Output
+--------
+A pdf file named Test_Coverage_Report.pdf in the target folder. (An example attached in this repo)
 	
 Project Process
 --------
